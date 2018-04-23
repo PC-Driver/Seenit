@@ -16,7 +16,14 @@ def genericlist():
         subseenitName ="SJSU - Subseenit"
         subseenitCategory = 'Educational'
 
-
+def userRegistration():
+        loginID = raw_input('Desired login ID? ')
+        loginPW = raw_input ('Log in Password? ')
+        firstname = raw_input('first name?')   
+        lastname = raw_input('last name?')
+        birthday = raw_input('birthday? (please put in format ##/##/####')
+        emailaddress = raw_input('email address?' )
+        
 class Account(object): #upon startup will automatically create a "table" from the genericlist
     def __init__(self, lID='0', lPW='0', fName='0', lName='0', bday='0', email='0', subbedSS='0'):
         self.lID = loginID
@@ -26,6 +33,7 @@ class Account(object): #upon startup will automatically create a "table" from th
         self.bday = birthday
         self.email = emailaddress
         self.subbedSS = subseenit
+
    # def createSubSeenit():
         #...
     #def joinSubSeenit():
