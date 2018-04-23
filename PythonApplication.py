@@ -2,10 +2,10 @@
 #reminder: create a function to input new accounts
 
 class Values(object):
-    def
+    def 
 
 
-class Account(genericlist):
+class Account(genericlist): #upon startup will automatically create a "table" from the genericlist class
     def __init__(self, lID='0', lPW='0', fName='0', lName='0', birthday='0', email='0'):
         self.lId = lID
         self.lPW = lPW
@@ -13,6 +13,6 @@ class Account(genericlist):
         self.lName = lastname
         self.birthday = birthday
         self.email = email
-definition createAccount()
-    #insert code here about creating a new account
+
+    def createAccount(): #creates a new account
  
