@@ -7,7 +7,8 @@ c = conn.cursor
 def print_menu():
         #MENU DESIGN!
         print (33* "-", "MENU" , 33 * "-")
-        print( "|", 30 * " ", "insert", 30 * " ", "|", )
+        print( "|", 30 * " ", "insert user", 30 * " ", "|", )
+        print( "|", 30 * " ", "insert subseenit", 30 * " ", "|", )
         print( "|", 30 * " ", "modify", 30 * " ", "|", )
         print( "|", 30 * " ", "delete", 30 * " ", "|", )
         print( "|", 30 * " ", "display tables", 22 * " ", "|", )
@@ -16,14 +17,18 @@ def print_menu():
 
 def insert_user():
     #insert sql commands go here
-    os.system('clear')
-    print("you chose insert")
+    print("you chose insert user")
+    a =input("user id#? (choose your favorite number)")
     x =input("user name?")
     y =input("email?")
-    z =input("birthday? please enter in ##/##/#### format")
-    
-    INSERT user VALUES
-    (1, 'x','y',)
+    c.execute("INSERT INTO user (a,x,y) VALUES (?, ?, ?)",
+          (a,x,y))
+    conn.commit()
+
+def insert_subseenit():
+    #insert sql commands go here
+    os.system('clear')
+
     
 def modify():
     #modify sql commands go here
@@ -44,8 +49,8 @@ while True:
     print_menu()
    
     selection = input("\n") #for administrator - enter 0 to exit program
-    if selection  == "insert":
-        insert()
+    if selection  == "insert user":
+        insert_user()
     elif selection  == "delete":
         delete()
     elif selection  == "modify":
