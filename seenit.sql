@@ -51,6 +51,66 @@ CREATE TABLE IF NOT EXISTS comment (
   ON DELETE CASCADE
   ON UPDATE CASCADE);
 
+CREATE TABLE IF NOT EXISTS post_upvote (
+  pu_id INT NOT NULL AUTO_INCREMENT,
+  author_id INT NOT NULL,
+  post_id INT NOT NULL,
+  created_at DATETIME default CURRENT_TIMESTAMP,
+  PRIMARY KEY (pu_id),
+  FOREIGN KEY (author_id)
+  REFERENCES user (u_id)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE,
+  FOREIGN KEY (post_id)
+  REFERENCES post (p_id)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE);
+
+CREATE TABLE IF NOT EXISTS post_downvote (
+  pd_id INT NOT NULL AUTO_INCREMENT,
+  author_id INT NOT NULL,
+  post_id INT NOT NULL,
+  created_at DATETIME default CURRENT_TIMESTAMP,
+  PRIMARY KEY (pd_id),
+  FOREIGN KEY (author_id)
+  REFERENCES user (u_id)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE,
+  FOREIGN KEY (post_id)
+  REFERENCES post (p_id)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE);
+
+CREATE TABLE IF NOT EXISTS comment_downvote (
+  cd_id INT NOT NULL AUTO_INCREMENT,
+  author_id INT NOT NULL,
+  comment_id INT NOT NULL,
+  created_at DATETIME default CURRENT_TIMESTAMP,
+  PRIMARY KEY (cd_id),
+  FOREIGN KEY (author_id)
+  REFERENCES user (u_id)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE,
+  FOREIGN KEY (comment_id)
+  REFERENCES comment (c_id)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE);
+
+CREATE TABLE IF NOT EXISTS comment_upvote (
+  cu_id INT NOT NULL AUTO_INCREMENT,
+  author_id INT NOT NULL,
+  comment_id INT NOT NULL,
+  created_at DATETIME default CURRENT_TIMESTAMP,
+  PRIMARY KEY (cu_id),
+  FOREIGN KEY (author_id)
+  REFERENCES user (u_id)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE,
+  FOREIGN KEY (comment_id)
+  REFERENCES comment (c_id)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE);
+
 INSERT user VALUES
 (1,'Andy','andy@gmail.com'),
 (2,'Bob','bob@sjsu.edu'),
@@ -74,3 +134,12 @@ INSERT comment(c_id,c_content,author_id,post_id) VALUES
 (2,'LOL',3,3),
 (3,'beautiful',4,1),
 (4,'funny',3,2);
+
+INSERT post_upvote(pu_id,author_id,post_id) VALUES
+(1,1,1),
+(2,2,2),
+(3,3,3),
+(4,4,4),
+(5,1,2),
+(6,1,3),
+(7,1,4); 
