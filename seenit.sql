@@ -3,14 +3,14 @@ create database seenitdb;
 use seenitdb;
 
 CREATE TABLE IF NOT EXISTS user (
-  u_id INT NOT NULL,
+  u_id INT NOT NULL AUTO_INCREMENT,
   u_name VARCHAR(45) NULL,
   email VARCHAR(45) NULL,
   PRIMARY KEY (u_id)
 );
 
 CREATE TABLE IF NOT EXISTS seenit (
-  s_id INT NOT NULL,
+  s_id INT NOT NULL AUTO_INCREMENT,
   category VARCHAR(45) NULL,
   creater_id INT NOT NULL,
   PRIMARY KEY (s_id),
@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS seenit (
   ON UPDATE CASCADE);
 
 CREATE TABLE IF NOT EXISTS post (
-  p_id INT NOT NULL,
+  p_id INT NOT NULL AUTO_INCREMENT,
   p_content VARCHAR(255) NULL,
   seenit_id INT NOT NULL,
   author_id INT NOT NULL,
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS post (
   ON UPDATE CASCADE);
 
 CREATE TABLE IF NOT EXISTS comment (
-  c_id INT NOT NULL,
+  c_id INT NOT NULL AUTO_INCREMENT,
   c_content VARCHAR(255) NULL,
   author_id INT NOT NULL,
   post_id INT NOT NULL,
