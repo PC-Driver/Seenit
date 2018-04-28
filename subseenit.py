@@ -68,13 +68,28 @@ def insert_user(info):
         c.execute("INSERT INTO user VALUES (:u_id, :u_name, :email)",
                   {'u_id':info.u_id, 'u_name':info.u_name, 'email':info.email})
 
+
+
+with conn: c.execute('INSERT INTO user (u_id, u_name, email) VALUES(1,"Andy","andy@gmail.com")')
+with conn: c.execute('INSERT INTO user (u_id, u_name, email) VALUES(2,"Bob","bob@sjsu.edu")')
+with conn: c.execute('INSERT INTO user (u_id, u_name, email) VALUES(3,"Chris","chris@yahoo.com")')
+with conn: c.execute('INSERT INTO user (u_id, u_name, email) VALUES(4,"Evan","evan@gmail.com")')
+
+with conn: c.execute('INSERT INTO seenit (s_id, category, creater_id) VALUES(1,"news", 2)')
+with conn: c.execute('INSERT INTO seenit (s_id, category, creater_id) VALUES(2,"gaming", 4)')
+with conn: c.execute('INSERT INTO seenit (s_id, category, creater_id) VALUES(3,"funny", 1)')
+with conn: c.execute('INSERT INTO seenit (s_id, category, creater_id) VALUES(4,"pics", 3)')
+
+with conn: c.execute('INSERT INTO comment (c_id, c_content, author_id, post_id) VALUES (1, "Cool", 2, 1)')
+with conn: c.execute('INSERT INTO comment (c_id, c_content, author_id, post_id) VALUES (2, "LOL", 3, 4)')
+
 while True:
     print("-" * 40)
     print ("                Menu")
     print("-" * 40)
     method = input('''   
         1 = Login
-        2 = Delete.
+        2 = Display Accounts
         3 = Modify
         4 = Exit
         ''')
@@ -103,21 +118,11 @@ while True:
                 print("2 - Login")
             else:
                 break
+    elif method == 2:
+        c.execute("SELECT * FROM user ")
+        print c.fetchall()
     else:
         break
 
-
-with conn: c.execute('INSERT INTO user (u_id, u_name, email) VALUES(1,"Andy","andy@gmail.com")')
-with conn: c.execute('INSERT INTO user (u_id, u_name, email) VALUES(2,"Bob","bob@sjsu.edu")')
-with conn: c.execute('INSERT INTO user (u_id, u_name, email) VALUES(3,"Chris","chris@yahoo.com")')
-with conn: c.execute('INSERT INTO user (u_id, u_name, email) VALUES(4,"Evan","evan@gmail.com")')
-
-with conn: c.execute('INSERT INTO seenit (s_id, category, creater_id) VALUES(1,"news", 2)')
-with conn: c.execute('INSERT INTO seenit (s_id, category, creater_id) VALUES(2,"gaming", 4)')
-with conn: c.execute('INSERT INTO seenit (s_id, category, creater_id) VALUES(3,"funny", 1)')
-with conn: c.execute('INSERT INTO seenit (s_id, category, creater_id) VALUES(4,"pics", 3)')
-
-with conn: c.execute('INSERT INTO comment (c_id, c_content, author_id, post_id) VALUES (1, "Cool", 2, 1)')
-with conn: c.execute('INSERT INTO comment (c_id, c_content, author_id, post_id) VALUES (2, "LOL", 3, 4)')
 
 conn.close()
