@@ -1,10 +1,14 @@
 import sqlite3
+from classes import User
+
 conn = sqlite3.connect('subseenit.db')
 c = conn.cursor()
 
 #drop table if a clean database is required
 c.execute("DROP TABLE IF EXISTS user")
 c.execute("DROP TABLE IF EXISTS seenit")
+c.execute("DROP TABLE IF EXISTS post")
+c.execute("DROP TABLE IF EXISTS comment")
 
 
 c.execute("""CREATE TABLE IF NOT EXISTS user (
@@ -58,6 +62,50 @@ c.execute("""CREATE TABLE IF NOT EXISTS comment(
             ON DELETE CASCADE
             ON UPDATE CASCADE            
             )""")
+
+def insert_user(info):
+    with conn:
+        c.execute("INSERT INTO user VALUES (:u_id, :u_name, :email)",
+                  {'u_id':info.u_id, 'u_name':info.u_name, 'email':info.email})
+
+while True:
+    print("-" * 40)
+    print ("                Menu")
+    print("-" * 40)
+    method = input('''   
+        1 = Login
+        2 = Delete.
+        3 = Modify
+        4 = Exit
+        ''')
+    if method == 1:
+
+        while True:
+            print("-" * 40)
+            print ("               Menu2")
+            print("-" * 40)
+            login = input('''
+        1 = Create Account
+        2 = Login
+        4 = Exit
+            ''')
+            print("-" * 40)
+            # print("\n")
+            if login == 1:
+                print("1 - Insert user")
+                a = input("user id#? (choose your favorite number)")
+                x = raw_input("user name?")
+                y = raw_input("email?")
+                new_user = User(a, x, y)
+                insert_user(new_user)
+
+            elif login == 2:
+                print("2 - Login")
+            else:
+                break
+    else:
+        break
+
 
 with conn: c.execute('INSERT INTO user (u_id, u_name, email) VALUES(1,"Andy","andy@gmail.com")')
 with conn: c.execute('INSERT INTO user (u_id, u_name, email) VALUES(2,"Bob","bob@sjsu.edu")')
