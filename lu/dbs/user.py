@@ -1,6 +1,6 @@
 import sqlite3 as sql
 
-conn = sql.connect('seenit.db')
+conn = sql.connect('dbs/seenit.db')
 c = conn.cursor()
 
 # register-insert new user

@@ -1,7 +1,7 @@
 # run this file to create the database and tables before running the app
 import sqlite3 as sql
 
-conn = sql.connect('seenit.db')
+conn = sql.connect('dbs/seenit.db')
 c = conn.cursor()
 
 def create_tables():
@@ -163,7 +163,7 @@ def show_users():
     with conn:
         c.execute('SELECT * FROM user')
         users = c.fetchall()
-        print (users)
+        # print (users)
 
 def show_seenits():
     with conn:
@@ -171,25 +171,25 @@ def show_seenits():
         seenits = c.fetchall()
         # for s in seenits:
         #     print (s)
-        print (seenits)
+        # print (seenits)
 
 def show_posts():
     with conn:
         c.execute('SELECT * FROM post')
         posts = c.fetchall()
-        print (posts)
+        # print (posts)
 
 def show_comments():
     with conn:
         c.execute('SELECT * FROM comment')
         comments = c.fetchall()
-        print (comments)
+        # print (comments)
 
 def show_post_upvotes():
     with conn:
         c.execute('SELECT * FROM post_upvote')
         pus = c.fetchall()
-        print (pus)
+        # print (pus)
 
 # create_tables()
 # insert_users()
