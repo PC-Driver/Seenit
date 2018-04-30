@@ -1,6 +1,5 @@
 # run this file to create the database and tables before running the app
 import sqlite3 as sql
-import user
 
 conn = sql.connect('seenit.db')
 c = conn.cursor()
@@ -18,7 +17,7 @@ def create_tables():
 
     c.execute("""CREATE TABLE IF NOT EXISTS user (
                 u_id INT NOT NULL,
-                u_name VARCHAR(45) NULL,
+                u_name VARCHAR(45) NULL UNIQUE,
                 email VARCHAR(45) NULL,
                 PRIMARY KEY (u_id)
                 )""")
@@ -132,7 +131,7 @@ def insert_seenits():
             c.execute('INSERT INTO seenit (s_id, category, creater_id) VALUES(2,"gaming", 4)')
             c.execute('INSERT INTO seenit (s_id, category, creater_id) VALUES(3,"funny", 1)')
             c.execute('INSERT INTO seenit (s_id, category, creater_id) VALUES(4,"pics", 3)')
-            print ("done inserting seents")
+            # print ("done inserting seents")
         except:
             print ("error inserting seenits")
 
@@ -192,13 +191,13 @@ def show_post_upvotes():
         pus = c.fetchall()
         print (pus)
 
-create_tables()
-insert_users()
-insert_seenits()
-insert_posts()
-insert_comments()
-insert_post_upvote()
-show_seenits()
-show_posts()
-show_comments()
-show_post_upvotes()
+# create_tables()
+# insert_users()
+# insert_seenits()
+# insert_posts()
+# insert_comments()
+# insert_post_upvote()
+# show_seenits()
+# show_posts()
+# show_comments()
+# show_post_upvotes()
