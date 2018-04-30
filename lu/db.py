@@ -1,7 +1,7 @@
 # run this file to create the database and tables before running the app
 import sqlite3 as sql
 
-conn = sql.connect('dbs/seenit.db')
+conn = sql.connect('seenit.db')
 c = conn.cursor()
 
 def create_tables():
