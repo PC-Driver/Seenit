@@ -1,5 +1,6 @@
 # run this file to create the database and tables before running the app
 import sqlite3 as sql
+import user
 
 conn = sql.connect('seenit.db')
 c = conn.cursor()
@@ -191,15 +192,15 @@ def show_post_upvotes():
         pus = c.fetchall()
         print (pus)
 
-create_tables()
-insert_users()
-insert_seenits()
-insert_posts()
-insert_comments()
-insert_post_upvote()
-
+# create_tables()
+# insert_users()
+# insert_seenits()
+# insert_posts()
+# insert_comments()
+# insert_post_upvote()
+user.insert('b','b@email')
 show_users()
-show_seenits()
-show_posts()
-show_comments()
-show_post_upvotes()
+# show_seenits()
+# show_posts()
+# show_comments()
+# show_post_upvotes()
