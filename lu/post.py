@@ -9,11 +9,11 @@ def insert(id, content, seenit_id, author_id):
     with conn:
         try:
             c.execute(query)
-            print ("insert successfully")
+            print ("post insert successfully")
             conn.commit()
         except:
             conn.rollback()
-            print ("insert error")
+            print ("post insert error")
 
 def read_one(id):
     query = "SELECT * FROM post WHERE p_id=" + str(id)
@@ -22,32 +22,35 @@ def read_one(id):
             c.execute(query)
             items = c.fetchall()
             item = items[0]
-            print ("read successfully")
+            print ("post read successfully")
             return item 
         except:
-            print("read error")        
+            print("post read error")        
 
-def delete(id):
-    query = "DELETE FROM post WHERE p_id=" + str(id)
+def delete(s_id):
+    query = "DELETE FROM post WHERE p_id={}".format(s_id)
     # print (query)
     with conn:
         try:
             c.execute(query)
-            print ("delete successfully")
+            print ("post delete successfully")
             conn.commit()
         except:
             conn.rollback()
-            print ("delete error")
+            print ("post delete error")
 
 def read_all(seenit_id):
+    query = "SELECT * FROM post WHERE seenit_id=" + str(seenit_id)
+    # print (query)
     with conn:
         try:
-            c.execute("SELECT * FROM post WHERE seenit_id=" + str(id))
+            c.execute(query)
             items = c.fetchall()
-            print ("read successfully")
+            # print (items)
+            print ("post read successfully")
             return items
         except:
-            print("read error") 
+            print("post read error") 
 
 def update(id, content):
     query = "UPDATE post SET p_content='" + content + "' WHERE p_id=" + str(id)
@@ -55,11 +58,13 @@ def update(id, content):
     with conn:
         try:
             c.execute(query)
-            print ("update successfully")
+            print ("post update successfully")
             conn.commit()
         except:
             conn.rollback()
-            print ("update error")
+            print ("post update error")
+
+read_all(1)
 
 
 

@@ -9,11 +9,11 @@ def insert(id, category, creater_id):
     with conn:
         try:
             c.execute(query)
-            print ("insert successfully")
+            print ("seenit insert successfully")
             conn.commit()
         except:
             conn.rollback()
-            print ("insert error")
+            print ("seenit insert error")
 
 def read_one(id):
     query = "SELECT * FROM seenit WHERE s_id=" + str(id)
@@ -22,10 +22,10 @@ def read_one(id):
             c.execute(query)
             items = c.fetchall()
             item = items[0]
-            print ("read successfully")
+            print ("seenit read successfully")
             return item 
         except:
-            print("read error")        
+            print("seenit read error")        
 
 def delete(id):
     query = "DELETE FROM seenit WHERE s_id=" + str(id)
@@ -33,35 +33,35 @@ def delete(id):
     with conn:
         try:
             c.execute(query)
-            print ("delete successfully")
+            print ("seenit delete successfully")
             conn.commit()
         except:
             conn.rollback()
-            print ("delete error")
+            print ("seenit delete error")
 
 def read_all():
     with conn:
         try:
             c.execute('SELECT * FROM seenit')
             items = c.fetchall()
-            print ("read successfully")
+            print ("seenit read successfully")
             return items
         except:
-            print("read error") 
+            print("seenit read error") 
 
 def update(id, category):
-    query = "UPDATE seenit SET category='" + category + "' WHERE u_id=" + str(id)
+    query = "UPDATE seenit SET category='" + category + "' WHERE s_id=" + str(id)
     # print (query)
     with conn:
         try:
             c.execute(query)
-            print ("update successfully")
+            print ("seenit update successfully")
             conn.commit()
         except:
             conn.rollback()
-            print ("update error")
+            print ("seenit update error")
 
-
+# update(6,'testtest')
 
 
 
