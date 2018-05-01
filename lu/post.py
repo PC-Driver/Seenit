@@ -64,7 +64,7 @@ def update(id, content):
             conn.rollback()
             print ("post update error")
 
-read_all(1)
+# read_all(1)
 
 
 

@@ -61,9 +61,113 @@ def login():
     else:
         exit()  
 
+def insert_comment(p_id):
+    global new_c_id
+    content = input("Please input your comment:")
+    comment.insert(new_c_id,content,p_id,this_u_id)
+    new_c_id += 1
+    show_comments(p_id)  
+
+def show_comment():
+    c_id = input("Please input id of the one you choose:")
+    _comment= comment.read_one(c_id)
+    print (_comment)
+    # show_votes(c_id)
+
+def delete_comment(p_id):
+    c_id = input("Please input id of the one you choose:")
+    comment.delete(c_id)
+    show_comments(p_id)
+
+def update_comment(p_id):
+    c_id = input("Please input id of the one you choose:")
+    content = input("Please input your comment:")
+    comment.update(c_id,content)
+    show_comments(p_id)
+
+def show_comments(p_id):
+    comments = comment.read_all(p_id)
+    print ("Comments:")
+    print (comments)
+    print("-" * 40)
+    print ("                Comment Menu")
+    print("-" * 40)
+    method = input('''   
+        1 = Create One
+        2 = Choose One
+        3 = Delete One
+        4 = Update One
+        5 = Main Menu
+        6 = Exit
+        ''')
+    if method == '1':
+        insert_comment(p_id)
+    elif method == '2':
+        show_comment()
+    elif method == '3':
+        delete_comment(p_id)
+    elif method == '4':
+        update_comment(p_id);
+    elif method == '6':
+        exit()
+    else:
+        main_menu()
+
+def insert_post(s_id):
+    global new_p_id
+    content = input("Please input your post:")
+    post.insert(new_p_id,content,s_id,this_u_id)
+    new_p_id += 1
+    show_posts(s_id)  
+
+def show_post():
+    p_id = input("Please input id of the one you choose:")
+    _post= post.read_one(p_id)
+    print (_post)
+    show_comments(p_id)
+
+def delete_post(s_id):
+    p_id = input("Please input id of the one you choose:")
+    post.delete(p_id)
+    show_posts(s_id)
+
+def update_post(s_id):
+    p_id = input("Please input id of the one you choose:")
+    content = input("Please input your post:")
+    post.update(p_id,content)
+    show_posts(s_id)
+
+def show_posts(s_id):
+    posts = post.read_all(s_id)
+    print ("Posts:")
+    print (posts)
+    print("-" * 40)
+    print ("                Post Menu")
+    print("-" * 40)
+    method = input('''   
+        1 = Create One
+        2 = Choose One
+        3 = Delete One
+        4 = Update One
+        5 = Main Menu
+        6 = Exit
+        ''')
+    if method == '1':
+        insert_post(s_id)
+    elif method == '2':
+        show_post()
+    elif method == '3':
+        delete_post(s_id)
+    elif method == '4':
+        update_post(s_id);
+    elif method == '6':
+        exit()
+    else:
+        main_menu()
+
 def insert_seenit():
     global new_s_id
-    category = input("Please describe your seenit.")
+    category = input("Please describe your seenit:")
     seenit.insert(new_s_id,category,this_u_id)
     new_s_id += 1
     show_seenits()    
@@ -72,10 +176,7 @@ def show_seenit():
     s_id = input("Please input id of the one you choose:")
     _seenit = seenit.read_one(s_id)
     print (_seenit)
-    posts = post.read_all(s_id)
-    print ("Posts:")
-    print (posts)
-    # post menu
+    show_posts(s_id)
 
 def delete_seenit():
     s_id = input("Please input id of the one you choose:")
@@ -84,7 +185,7 @@ def delete_seenit():
 
 def update_seenit():
     s_id = input("Please input id of the one you choose:")
-    category = input("Please describe your seenit.")
+    category = input("Please describe your seenit:")
     seenit.update(s_id,category)
     show_seenits()
 
