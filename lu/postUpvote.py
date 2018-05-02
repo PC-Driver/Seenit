@@ -42,7 +42,7 @@ def delete(id):
 def read_all(post_id):
     with conn:
         try:
-            c.execute("SELECT * FROM post_upvote WHERE post_id=" + str(id))
+            c.execute("SELECT * FROM post_upvote WHERE post_id=" + str(post_id))
             items = c.fetchall()
             print ("read successfully")
             return items
@@ -50,7 +50,7 @@ def read_all(post_id):
             print("read error") 
 
 
-
+read_all(1)
 
 
 

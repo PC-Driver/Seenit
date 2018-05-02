@@ -42,7 +42,6 @@ def register():
 
 def login():
     global this_u_id, admin
-    # while True:
     print("-" * 40)
     print ("               Login Menu")
     print("-" * 40)
@@ -70,45 +69,84 @@ def login():
     else:
         exit()  
 
-# def insert_vote(p_id):
-#     global new_c_id
-#     content = input("Please input your comment:")
-#     comment.insert(new_c_id,content,p_id,this_u_id)
-#     new_c_id += 1
-#     show_comments(p_id)  
+def insert_vote(table, vote, id):
+    global new_pu_id, new_pd_id, new_cu_id, new_cd_id
+    if table == 'post':
+        if vote == 'up':
+            pu.insert(new_pu_id, id, this_u_id)
+            new_pu_id += 1
+        else:
+            pd.insert(new_pd_id, id, this_u_id)
+            new_pd_id += 1
+        # show_post(id)
+    else:
+        if vote == 'up':
+            cu.insert(new_cu_id, id, this_u_id)
+            new_cu_id += 1
+        else:
+            cd.insert(new_cd_id, id, this_u_id)
+            new_cd_id += 1
+        show_comment(id)        
 
-# def delete_vote(p_id):
-#     c_id = input("Please input id of the one you choose:")
-#     comment.delete(c_id)
-#     show_comments(p_id)
+def delete_vote(table, vote, id):
+    v_id = input("Please input id of the one you want to delete:")
+    if table == 'post':
+        if vote == 'up':
+            pu.delete(v_id)
+        else:
+            pd.delete(v_id)
+        # show_post(id)
+    else:
+        if vote == 'up':
+            cu.delete(v_id)
+        else:
+            cd.delete(v_id)
+        show_comment(id)
 
-# def show_votes(p_id):
-#     comments = comment.read_all(p_id)
-#     print ("Comments:")
-#     print (comments)
-#     print("-" * 40)
-#     print ("                Comment Menu")
-#     print("-" * 40)
-#     method = input('''   
-#         1 = Create One
-#         2 = Choose One
-#         3 = Delete One
-#         4 = Update One
-#         5 = Main Menu
-#         6 = Exit
-#         ''')
-#     if method == '1':
-#         insert_comment(p_id)
-#     elif method == '2':
-#         show_comment()
-#     elif method == '3':
-#         delete_comment(p_id)
-#     elif method == '4':
-#         update_comment(p_id);
-#     elif method == '6':
-#         exit()
-#     else:
-#         main_menu()
+def show_votes(table, id):
+    if table == 'comment':
+        up = cu.read_all(id)
+    else:
+        up = pu.read_all(id)
+    print ("Upvotes:")
+    print (up)
+    if table == 'comment':
+        down = cd.read_all(id)
+    else:
+        down = pd.read_all(id)
+    print ("Downvotes:")
+    print (down)
+    print("-" * 40)
+    print ("                Vote Menu")
+    print("-" * 40)
+    if admin == True:
+        method = input('''   
+            1 = Up
+            2 = Down
+            3 = Delete Up
+            4 = Delete Down
+            5 = Main Menu
+            6 = Exit
+            ''')
+    else:
+        method = input('''   
+            1 = Up
+            2 = Down
+            5 = Main Menu
+            6 = Exit
+            ''')
+    if method == '1':
+        insert_vote(table, 'up', id)
+    elif method == '2':
+        insert_vote(table, 'down', id)
+    elif method == '3':
+        delete_vote(table, 'up', id)
+    elif method == '4':
+        delete_vote(table, 'down', id)
+    elif method == '6':
+        exit()
+    else:
+        main_menu()
 
 def insert_comment(p_id):
     global new_c_id
@@ -117,11 +155,10 @@ def insert_comment(p_id):
     new_c_id += 1
     show_comments(p_id)  
 
-def show_comment():
-    c_id = input("Please input id of the one you choose:")
+def show_comment(c_id):
     _comment= comment.read_one(c_id)
     print (_comment)
-    show_votes(c_id)
+    show_votes('comment', c_id)
 
 def delete_comment(p_id):
     c_id = input("Please input id of the one you choose:")
@@ -160,7 +197,8 @@ def show_comments(p_id):
     if method == '1':
         insert_comment(p_id)
     elif method == '2':
-        show_comment()
+        c_id = input("Please input id of the one you choose:")
+        show_comment(c_id)
     elif method == '3':
         delete_comment(p_id)
     elif method == '4':
@@ -181,7 +219,26 @@ def show_post():
     p_id = input("Please input id of the one you choose:")
     _post= post.read_one(p_id)
     print (_post)
-    show_comments(p_id)
+    comment_and_vote_menu(p_id)
+    
+def comment_and_vote_menu(p_id):
+    print("-" * 40)
+    print ("                Comment/Vote Menu")
+    print("-" * 40)
+    method = input('''   
+        1 = Show Comments
+        2 = Show Votes
+        3 = Main Menu
+        4 = Exit
+        ''')
+    if method == '1':
+        show_comments(p_id)
+    elif method == '2':
+        show_votes('post', p_id)
+    elif method == '4':
+        exit()
+    else:
+        main_menu()    
 
 def delete_post(s_id):
     p_id = input("Please input id of the one you choose:")

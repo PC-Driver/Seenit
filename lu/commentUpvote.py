@@ -42,7 +42,7 @@ def delete(id):
 def read_all(comment_id):
     with conn:
         try:
-            c.execute("SELECT * FROM comment_upvote WHERE comment_id=" + str(id))
+            c.execute("SELECT * FROM comment_upvote WHERE comment_id=" + str(comment_id))
             items = c.fetchall()
             print ("read successfully")
             return items
