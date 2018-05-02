@@ -19,8 +19,20 @@ def insert(id, name, email, pwd):
             conn.rollback()
             print ("insert error")
 
+def read_one(u_id):
+    query = "SELECT * FROM user WHERE u_id=" + str(u_id)
+    with conn: 
+        try:
+            c.execute(query)
+            users = c.fetchall()
+            user_info = users[0]
+            print ("User Info read successfully")
+            return user_info 
+        except:
+            print("User Info read error")   
+
 # login-get user id with name and password input
-def read_one(name, pwd):
+def login(name, pwd):
     h_pwd = crypt.crypt(pwd,salt)
     query = "SELECT u_id FROM user WHERE u_name='" + name + "'AND pwd='" + h_pwd + "'"
     with conn: 

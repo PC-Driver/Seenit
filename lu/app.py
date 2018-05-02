@@ -60,7 +60,7 @@ def login():
         x = input("user name:")
         y = input("password:")
         w = input("Are you an administrator? (y/n)")
-        this_u_id = user.read_one(x, y)
+        this_u_id = user.login(x, y)
         if w == 'y':
             admin = True
         main_menu()
@@ -95,7 +95,7 @@ def delete_vote(table, vote, id):
             pu.delete(v_id)
         else:
             pd.delete(v_id)
-        # show_post(id)
+        show_votes('post', id)
     else:
         if vote == 'up':
             cu.delete(v_id)
@@ -346,21 +346,47 @@ def show_seenits():
     else:
         main_menu()
 
-# def account_profile():
-#     print("-" * 40)
-#     print ("                Account Menu")
-#     print("-" * 40)    
-#     method = input('''   
-#         1 = My Seenits
-#         2 = My Posts
-#         3 = My Comments
-#         4 = My Upvoted Posts
-#         5 = My Downvoted Posts
-#         6 = My Upvoted Comments
-#         7 = My Downvoted Comments
-#         8 = Main Menu
-#         9 = Exit
-#         ''')
+def account_profile():
+    global this_u_id
+    user_info = user.read_one(this_u_id)
+    print("Account Information:")
+    print(user_info)
+    print("-" * 40)
+    print ("                Account Menu")
+    print("-" * 40)
+    if admin == True:            
+        method = input('''   
+            1 = Update My Account Info
+            2 = Delete My Account
+            3 = Show All Accounts
+            4 = Main Menu
+            5 = Exit
+            ''')
+    else:
+        method = input('''   
+            1 = Update My Account Info
+            2 = Delete My Account
+            4 = Main Menu
+            5 = Exit
+            ''')
+    if method == '1':
+        x = input("user name: ")
+        z = input("password: ")
+        y = input("email: ")
+        user.update(this_u_id, x, z, y)
+        account_profile()
+    elif method == '2':
+        user.delete(this_u_id)
+        this_u_id = 0
+        main_menu()
+    elif method == '3':
+        all_users = user.read_all()
+        print (all_users)
+        account_profile()
+    elif method == '5':
+        exit()
+    else:
+        main_menu()
 
 def main_menu():
     print("-" * 40)
@@ -383,8 +409,8 @@ def main_menu():
         login()
     elif method == '2':
         show_seenits()
-    # elif method == '0':
-    #     account_profile()
+    elif method == '0':
+        account_profile()
     else:
         exit()
 
