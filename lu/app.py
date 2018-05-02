@@ -61,6 +61,46 @@ def login():
     else:
         exit()  
 
+# def insert_vote(p_id):
+#     global new_c_id
+#     content = input("Please input your comment:")
+#     comment.insert(new_c_id,content,p_id,this_u_id)
+#     new_c_id += 1
+#     show_comments(p_id)  
+
+# def delete_vote(p_id):
+#     c_id = input("Please input id of the one you choose:")
+#     comment.delete(c_id)
+#     show_comments(p_id)
+
+# def show_votes(p_id):
+#     comments = comment.read_all(p_id)
+#     print ("Comments:")
+#     print (comments)
+#     print("-" * 40)
+#     print ("                Comment Menu")
+#     print("-" * 40)
+#     method = input('''   
+#         1 = Create One
+#         2 = Choose One
+#         3 = Delete One
+#         4 = Update One
+#         5 = Main Menu
+#         6 = Exit
+#         ''')
+#     if method == '1':
+#         insert_comment(p_id)
+#     elif method == '2':
+#         show_comment()
+#     elif method == '3':
+#         delete_comment(p_id)
+#     elif method == '4':
+#         update_comment(p_id);
+#     elif method == '6':
+#         exit()
+#     else:
+#         main_menu()
+
 def insert_comment(p_id):
     global new_c_id
     content = input("Please input your comment:")
@@ -72,7 +112,7 @@ def show_comment():
     c_id = input("Please input id of the one you choose:")
     _comment= comment.read_one(c_id)
     print (_comment)
-    # show_votes(c_id)
+    show_votes(c_id)
 
 def delete_comment(p_id):
     c_id = input("Please input id of the one you choose:")

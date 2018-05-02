@@ -4,6 +4,7 @@ use seenitdb;
 
 CREATE TABLE IF NOT EXISTS user (
   u_id INT NOT NULL AUTO_INCREMENT,
+  pwd VARCHAR(45) NULL,
   u_name VARCHAR(45) NULL,
   email VARCHAR(45) NULL,
   PRIMARY KEY (u_id)
@@ -24,7 +25,6 @@ CREATE TABLE IF NOT EXISTS post (
   p_content VARCHAR(255) NULL,
   seenit_id INT NOT NULL,
   author_id INT NOT NULL,
-  created_at DATETIME default CURRENT_TIMESTAMP,
   PRIMARY KEY (p_id),
   FOREIGN KEY (seenit_id)
   REFERENCES seenit (s_id)
@@ -40,7 +40,6 @@ CREATE TABLE IF NOT EXISTS comment (
   c_content VARCHAR(255) NULL,
   author_id INT NOT NULL,
   post_id INT NOT NULL,
-  created_at DATETIME default CURRENT_TIMESTAMP,
   PRIMARY KEY (c_id),
   FOREIGN KEY (author_id)
   REFERENCES user (u_id)
@@ -55,7 +54,6 @@ CREATE TABLE IF NOT EXISTS post_upvote (
   pu_id INT NOT NULL AUTO_INCREMENT,
   author_id INT NOT NULL,
   post_id INT NOT NULL,
-  created_at DATETIME default CURRENT_TIMESTAMP,
   PRIMARY KEY (pu_id),
   FOREIGN KEY (author_id)
   REFERENCES user (u_id)
@@ -70,7 +68,6 @@ CREATE TABLE IF NOT EXISTS post_downvote (
   pd_id INT NOT NULL AUTO_INCREMENT,
   author_id INT NOT NULL,
   post_id INT NOT NULL,
-  created_at DATETIME default CURRENT_TIMESTAMP,
   PRIMARY KEY (pd_id),
   FOREIGN KEY (author_id)
   REFERENCES user (u_id)
@@ -85,7 +82,6 @@ CREATE TABLE IF NOT EXISTS comment_downvote (
   cd_id INT NOT NULL AUTO_INCREMENT,
   author_id INT NOT NULL,
   comment_id INT NOT NULL,
-  created_at DATETIME default CURRENT_TIMESTAMP,
   PRIMARY KEY (cd_id),
   FOREIGN KEY (author_id)
   REFERENCES user (u_id)
@@ -100,7 +96,6 @@ CREATE TABLE IF NOT EXISTS comment_upvote (
   cu_id INT NOT NULL AUTO_INCREMENT,
   author_id INT NOT NULL,
   comment_id INT NOT NULL,
-  created_at DATETIME default CURRENT_TIMESTAMP,
   PRIMARY KEY (cu_id),
   FOREIGN KEY (author_id)
   REFERENCES user (u_id)
