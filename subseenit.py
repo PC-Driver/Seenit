@@ -120,7 +120,7 @@ while True:
                 break
     elif method == 2:
         c.execute("SELECT * FROM user ")
-        print c.fetchall()
+        print (c.fetchall())
     else:
         break
 
