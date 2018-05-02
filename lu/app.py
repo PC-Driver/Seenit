@@ -10,6 +10,7 @@ new_u_id = new_s_id = new_p_id = new_c_id = 5
 new_pu_id = 8
 new_pd_id = new_cu_id = new_cd_id = 1
 this_u_id = 0
+admin = False
 
 # run this when database is not created yet
 def build_database():
@@ -25,19 +26,22 @@ def build_database():
     db.show_post_upvotes()
         
 def register():
-    global new_u_id, this_u_id
+    global new_u_id, this_u_id, admin
     print("1 - Register")
     x = input("user name: ")
     z = input("password: ")
     y = input("email: ")
+    w = input("Are you an administrator? (y/n)")
     user.insert(new_u_id, x, z, y)
     this_u_id = new_u_id
-    print ("this u id is ", this_u_id)
-    new_u_id += 1  
+    # print ("this u id is ", this_u_id)
+    new_u_id += 1
+    if w == 'y':
+        admin = True
     main_menu()  
 
 def login():
-    global this_u_id
+    global this_u_id, admin
     # while True:
     print("-" * 40)
     print ("               Login Menu")
@@ -56,7 +60,10 @@ def login():
         print("2 - Login")
         x = input("user name:")
         y = input("password:")
+        w = input("Are you an administrator? (y/n)")
         this_u_id = user.read_one(x, y)
+        if w == 'y':
+            admin = True
         main_menu()
     elif login == '3':
         main_menu()
@@ -134,14 +141,22 @@ def show_comments(p_id):
     print("-" * 40)
     print ("                Comment Menu")
     print("-" * 40)
-    method = input('''   
-        1 = Create One
-        2 = Choose One
-        3 = Delete One
-        4 = Update One
-        5 = Main Menu
-        6 = Exit
-        ''')
+    if admin == True:
+        method = input('''   
+            1 = Create One
+            2 = Choose One
+            3 = Delete One
+            4 = Update One
+            5 = Main Menu
+            6 = Exit
+            ''')
+    else:
+        method = input('''   
+            1 = Create One
+            2 = Choose One
+            5 = Main Menu
+            6 = Exit
+            ''')        
     if method == '1':
         insert_comment(p_id)
     elif method == '2':
@@ -186,14 +201,22 @@ def show_posts(s_id):
     print("-" * 40)
     print ("                Post Menu")
     print("-" * 40)
-    method = input('''   
-        1 = Create One
-        2 = Choose One
-        3 = Delete One
-        4 = Update One
-        5 = Main Menu
-        6 = Exit
-        ''')
+    if admin == True:
+        method = input('''   
+            1 = Create One
+            2 = Choose One
+            3 = Delete One
+            4 = Update One
+            5 = Main Menu
+            6 = Exit
+            ''')
+    else:
+        method = input('''   
+            1 = Create One
+            2 = Choose One
+            5 = Main Menu
+            6 = Exit
+            ''') 
     if method == '1':
         insert_post(s_id)
     elif method == '2':
@@ -237,14 +260,22 @@ def show_seenits():
     print("-" * 40)
     print ("                Seenit Menu")
     print("-" * 40)
-    method = input('''   
-        1 = Create One
-        2 = Choose One
-        3 = Delete One
-        4 = Update One
-        5 = Main Menu
-        6 = Exit
-        ''')
+    if admin == True:
+        method = input('''   
+            1 = Create One
+            2 = Choose One
+            3 = Delete One
+            4 = Update One
+            5 = Main Menu
+            6 = Exit
+            ''')
+    else:
+        method = input('''   
+            1 = Create One
+            2 = Choose One
+            5 = Main Menu
+            6 = Exit
+            ''') 
     if method == '1':
         insert_seenit()
     elif method == '2':
@@ -275,31 +306,30 @@ def show_seenits():
 #         ''')
 
 def main_menu():
-    # while True:
-        print("-" * 40)
-        print ("                Main Menu")
-        print("-" * 40)
-        print ("User ID is", this_u_id)
-        print ("0 means not logged in yet, other number means logged in already")
-        if this_u_id:
-            method = input(''' 
-                0 = Account Profile  
-                2 = Show Seenits
-                3 = Exit
-                ''')
-        else:    
-            method = input('''   
-                1 = Login
-                3 = Exit
-                ''')
-        if method == '1':
-            login()
-        elif method == '2':
-            show_seenits()
-        # elif method == '0':
-        #     account_profile()
-        else:
-            exit()
+    print("-" * 40)
+    print ("                Main Menu")
+    print("-" * 40)
+    print ("User ID is", this_u_id)
+    print ("0 means not logged in yet, other number means logged in already")
+    if this_u_id:
+        method = input(''' 
+            0 = Account Profile  
+            2 = Show Seenits
+            3 = Exit
+            ''')
+    else:    
+        method = input('''   
+            1 = Login
+            3 = Exit
+            ''')
+    if method == '1':
+        login()
+    elif method == '2':
+        show_seenits()
+    # elif method == '0':
+    #     account_profile()
+    else:
+        exit()
 
 # build_database()
 main_menu()

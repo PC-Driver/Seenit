@@ -19,7 +19,7 @@ def insert(id, name, email, pwd):
             conn.rollback()
             print ("insert error")
 
-# login-get user id with name input
+# login-get user id with name and password input
 def read_one(name, pwd):
     h_pwd = crypt.crypt(pwd,salt)
     query = "SELECT u_id FROM user WHERE u_name='" + name + "'AND pwd='" + h_pwd + "'"
