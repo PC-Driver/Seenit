@@ -1,11 +1,14 @@
 import sqlite3 as sql
+import crypt
 
 conn = sql.connect('seenit.db')
 c = conn.cursor()
+salt = '2y'
 
 # register-insert new user
-def insert(id, name, email):
-    query = "INSERT INTO user (u_id, u_name, email) VALUES (" + str(id) + ",'" + name + "','" + email + "')"
+def insert(id, name, email, pwd):
+    h_pwd = crypt.crypt(pwd,salt)
+    query = "INSERT INTO user (u_id, u_name, pwd, email) VALUES (" + str(id) + ",'" + name + "','" + h_pwd + "','" + email + "')"
     # print (query)
     with conn:
         try:
@@ -17,17 +20,18 @@ def insert(id, name, email):
             print ("insert error")
 
 # login-get user id with name input
-def read_one(name):
-    query = "SELECT u_id FROM user WHERE u_name='" + name + "'"
+def read_one(name, pwd):
+    h_pwd = crypt.crypt(pwd,salt)
+    query = "SELECT u_id FROM user WHERE u_name='" + name + "'AND pwd='" + h_pwd + "'"
     with conn: 
         try:
             c.execute(query)
             users = c.fetchall()
             _id = users[0][0]
-            print ("read successfully")
+            print ("login successfully")
             return _id 
         except:
-            print("read error")        
+            print("login error")        
 
 # admin delete account
 def delete(id):
@@ -54,8 +58,9 @@ def read_all():
             print("read error") 
 
 # update account info
-def update(id, name, email):
-    query = "UPDATE user SET u_name='" + name + "', email='" + email + "' WHERE u_id=" + str(id)
+def update(id, name, pwd, email):
+    h_pwd = crypt.crypt(pwd,salt)
+    query = "UPDATE user SET u_name='" + name + "', pwd='" + h_pwd + "', email='" + email + "' WHERE u_id=" + str(id)
     print (query)
     with conn:
         try:

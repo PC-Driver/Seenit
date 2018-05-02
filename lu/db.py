@@ -18,6 +18,7 @@ def create_tables():
     c.execute("""CREATE TABLE IF NOT EXISTS user (
                 u_id INT NOT NULL,
                 u_name VARCHAR(45) NULL UNIQUE,
+                pwd VARCHAR(45) NULL,
                 email VARCHAR(45) NULL,
                 PRIMARY KEY (u_id)
                 )""")
@@ -163,7 +164,7 @@ def show_users():
     with conn:
         c.execute('SELECT * FROM user')
         users = c.fetchall()
-        # print (users)
+        print (users)
 
 def show_seenits():
     with conn:
@@ -171,25 +172,25 @@ def show_seenits():
         seenits = c.fetchall()
         # for s in seenits:
         #     print (s)
-        # print (seenits)
+        print (seenits)
 
 def show_posts():
     with conn:
         c.execute('SELECT * FROM post')
         posts = c.fetchall()
-        # print (posts)
+        print (posts)
 
 def show_comments():
     with conn:
         c.execute('SELECT * FROM comment')
         comments = c.fetchall()
-        # print (comments)
+        print (comments)
 
 def show_post_upvotes():
     with conn:
         c.execute('SELECT * FROM post_upvote')
         pus = c.fetchall()
-        # print (pus)
+        print (pus)
 
 # create_tables()
 # insert_users()

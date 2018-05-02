@@ -27,9 +27,10 @@ def build_database():
 def register():
     global new_u_id, this_u_id
     print("1 - Register")
-    x = input("user name?")
-    y = input("email?")
-    user.insert(new_u_id, x, y)
+    x = input("user name: ")
+    z = input("password: ")
+    y = input("email: ")
+    user.insert(new_u_id, x, z, y)
     this_u_id = new_u_id
     print ("this u id is ", this_u_id)
     new_u_id += 1  
@@ -53,8 +54,9 @@ def login():
         register()
     elif login == '2':
         print("2 - Login")
-        x = input("user name?")
-        this_u_id = user.read_one(x)
+        x = input("user name:")
+        y = input("password:")
+        this_u_id = user.read_one(x, y)
         main_menu()
     elif login == '3':
         main_menu()
@@ -299,4 +301,5 @@ def main_menu():
         else:
             exit()
 
+# build_database()
 main_menu()
