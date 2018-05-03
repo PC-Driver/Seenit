@@ -3,11 +3,12 @@ import sqlite3 as sql
 import logging
 logging.basicConfig(filename='seenit.log', level=logging.INFO,
                     format='%(asctime)s:%(levelname)s:%(message)s')
-                    
+
 conn = sql.connect('seenit.db')
 c = conn.cursor()
 
 def create_tables():
+    logging.info("Creating tables in seenit.db")
     #drop table if a clean database is required
     c.execute("DROP TABLE IF EXISTS user")
     c.execute("DROP TABLE IF EXISTS seenit")
@@ -122,6 +123,7 @@ def create_tables():
                 ON UPDATE CASCADE)""")
 
 def insert_users():
+    logging.info("Inserting value into User table")
     with conn: 
         c.execute('INSERT INTO user (u_id, u_name, email) VALUES(1,"Andy","andy@gmail.com")')
         c.execute('INSERT INTO user (u_id, u_name, email) VALUES(2,"Bob","bob@sjsu.edu")')
@@ -129,6 +131,7 @@ def insert_users():
         c.execute('INSERT INTO user (u_id, u_name, email) VALUES(4,"Evan","evan@gmail.com")')
 
 def insert_seenits():
+    logging.info("Inserting value into Seenit table")
     with conn: 
         try:
             c.execute('INSERT INTO seenit (s_id, category, creater_id) VALUES(1,"news", 2)')
@@ -140,6 +143,7 @@ def insert_seenits():
             print ("error inserting seenits")
 
 def insert_posts():
+    logging.info("Inserting value into Post table")
     with conn:
         c.execute('INSERT INTO post VALUES (1,"Beautiful sunset reflecting on the sea.",4,2)')
         c.execute('INSERT INTO post VALUES (2,"Animal shelters across U.S. teach cats how to high five to make them more attractive for adoption",1,3)')
@@ -147,6 +151,7 @@ def insert_posts():
         c.execute('INSERT INTO post VALUES (4,"Is this the game that everyone is talking about [OC]",2,1)')
 
 def insert_comments():
+    logging.info("Inserting value into Comment table")
     with conn:
         c.execute('INSERT INTO comment VALUES (1,"cool",2,1)')
         c.execute('INSERT INTO comment VALUES (2,"LOL",3,3)')
@@ -154,6 +159,7 @@ def insert_comments():
         c.execute('INSERT INTO comment VALUES (4,"funny",3,2)')
 
 def insert_post_upvote():
+    logging.info("Inserting value into Post_Upvote table")
     with conn:
         c.execute('INSERT INTO post_upvote VALUES (1,1,1)')
         c.execute('INSERT INTO post_upvote VALUES (2,2,2)')
