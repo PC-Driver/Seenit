@@ -1,0 +1,5 @@
+read all post upvote error
+Printing main menu - Request user response
+Response: 1 - Login
+Print login menu - Request user response
+Response: 4 - Exit
