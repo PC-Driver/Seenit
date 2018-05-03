@@ -5,7 +5,7 @@ import postUpvote as pu
 import postDownvote as pd
 import commentUpvote as cu
 import commentDownvote as cd
-
+import getpass
 import logging
 logging.basicConfig(filename='seenit.log', level=logging.INFO,
                     format='%(asctime)s:%(levelname)s:%(message)s')
@@ -35,7 +35,7 @@ def register():
     logging.info("Register request user response\n")
     print("1 - Register")
     x = input("user name: ")
-    z = input("password: ")
+    z = getpass.getpass('Password:')
     y = input("email: ")
     w = input("Are you an administrator? (y/n)")
     logging.info("Response: ")
@@ -78,7 +78,7 @@ def login():
         logging.info("Print login menu - Request user response\n")
         print("2 - Login")
         x = input("user name:")
-        y = input("password:")
+        y = getpass.getpass('Password:')
         w = input("Are you an administrator? (y/n)")
         this_u_id = user.login(x, y)
         logging.info("user name: ")
@@ -491,7 +491,7 @@ def account_profile():
         logging.info("Response: 1 - Update Account Info\n")
         logging.info("Response 1 request user response\n")
         x = input("user name: ")
-        z = input("password: ")
+        z = getpass.getpass('Password:')
         y = input("email: ")
         logging.info("user name: ")
         logging.info(x)
