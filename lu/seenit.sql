@@ -3,7 +3,7 @@ create database seenitdb;
 use seenitdb;
 
 CREATE TABLE IF NOT EXISTS user (
-  u_id INT NOT NULL AUTO_INCREMENT,
+  u_id INT NOT NULL,
   pwd VARCHAR(45) NULL,
   u_name VARCHAR(45) NULL,
   email VARCHAR(45) NULL,
@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS user (
 );
 
 CREATE TABLE IF NOT EXISTS seenit (
-  s_id INT NOT NULL AUTO_INCREMENT,
+  s_id INT NOT NULL,
   category VARCHAR(45) NULL,
   creater_id INT NOT NULL,
   PRIMARY KEY (s_id),
@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS seenit (
   ON UPDATE CASCADE);
 
 CREATE TABLE IF NOT EXISTS post (
-  p_id INT NOT NULL AUTO_INCREMENT,
+  p_id INT NOT NULL,
   p_content VARCHAR(255) NULL,
   seenit_id INT NOT NULL,
   author_id INT NOT NULL,
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS post (
   ON UPDATE CASCADE);
 
 CREATE TABLE IF NOT EXISTS comment (
-  c_id INT NOT NULL AUTO_INCREMENT,
+  c_id INT NOT NULL,
   c_content VARCHAR(255) NULL,
   author_id INT NOT NULL,
   post_id INT NOT NULL,
@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS comment (
   ON UPDATE CASCADE);
 
 CREATE TABLE IF NOT EXISTS post_upvote (
-  pu_id INT NOT NULL AUTO_INCREMENT,
+  pu_id INT NOT NULL,
   author_id INT NOT NULL,
   post_id INT NOT NULL,
   PRIMARY KEY (pu_id),
@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS post_upvote (
   ON UPDATE CASCADE);
 
 CREATE TABLE IF NOT EXISTS post_downvote (
-  pd_id INT NOT NULL AUTO_INCREMENT,
+  pd_id INT NOT NULL,
   author_id INT NOT NULL,
   post_id INT NOT NULL,
   PRIMARY KEY (pd_id),
@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS post_downvote (
   ON UPDATE CASCADE);
 
 CREATE TABLE IF NOT EXISTS comment_downvote (
-  cd_id INT NOT NULL AUTO_INCREMENT,
+  cd_id INT NOT NULL,
   author_id INT NOT NULL,
   comment_id INT NOT NULL,
   PRIMARY KEY (cd_id),
@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS comment_downvote (
   ON UPDATE CASCADE);
 
 CREATE TABLE IF NOT EXISTS comment_upvote (
-  cu_id INT NOT NULL AUTO_INCREMENT,
+  cu_id INT NOT NULL,
   author_id INT NOT NULL,
   comment_id INT NOT NULL,
   PRIMARY KEY (cu_id),

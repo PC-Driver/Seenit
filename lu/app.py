@@ -6,6 +6,10 @@ import postDownvote as pd
 import commentUpvote as cu
 import commentDownvote as cd
 
+import logging
+logging.basicConfig(filename='seenit.log', level=logging.INFO,
+                    format='%(asctime)s:%(levelname)s:%(message)s')
+
 new_u_id = new_s_id = new_p_id = new_c_id = 5
 new_pu_id = 8
 new_pd_id = new_cu_id = new_cd_id = 1
@@ -14,6 +18,7 @@ admin = False
 
 # run this when database is not created yet
 def build_database():
+    logging.info("Build database\n")
     db.create_tables()
     db.insert_users()
     db.insert_seenits()
@@ -27,11 +32,22 @@ def build_database():
         
 def register():
     global new_u_id, this_u_id, admin
+    logging.info("Register request user response\n")
     print("1 - Register")
     x = input("user name: ")
     z = input("password: ")
     y = input("email: ")
     w = input("Are you an administrator? (y/n)")
+    logging.info("Response: ")
+    logging.info("user name: ")
+    logging.info(x)
+    logging.info(" password: ")
+    logging.info(z)
+    logging.info(" email: ")
+    logging.info(y)
+    logging.info("Are you administrator? ")
+    logging.info(w)
+    logging.info("\n")
     user.insert(new_u_id, x, z, y)
     this_u_id = new_u_id
     # print ("this u id is ", this_u_id)
@@ -42,6 +58,7 @@ def register():
 
 def login():
     global this_u_id, admin
+    logging.info("Print login menu - Request user response\n")
     print("-" * 40)
     print ("               Login Menu")
     print("-" * 40)
@@ -54,19 +71,31 @@ def login():
     print("-" * 40)
     # print("\n")
     if login == '1':
+        logging.info("Response: 1 - Register\n")
         register()
     elif login == '2':
+        logging.info("Response: 2 - Already A Member\n")
+        logging.info("Print login menu - Request user response\n")
         print("2 - Login")
         x = input("user name:")
         y = input("password:")
         w = input("Are you an administrator? (y/n)")
         this_u_id = user.login(x, y)
+        logging.info("user name: ")
+        logging.info(x)
+        logging.info(" password: ")
+        logging.info(y)
+        logging.info(" Are you an administrator? ")
+        logging.info(w)
+        logging.info("\n")
         if w == 'y':
             admin = True
         main_menu()
     elif login == '3':
+        logging.info("Response: 3 - main menu\n")
         main_menu()
     else:
+        logging.info("Response: 4 - Exit\n")
         exit()  
 
 def insert_vote(table, vote, id):
@@ -78,7 +107,7 @@ def insert_vote(table, vote, id):
         else:
             pd.insert(new_pd_id, id, this_u_id)
             new_pd_id += 1
-        # show_post(id)
+        show_votes('post', id)
     else:
         if vote == 'up':
             cu.insert(new_cu_id, id, this_u_id)
@@ -89,7 +118,11 @@ def insert_vote(table, vote, id):
         show_comment(id)        
 
 def delete_vote(table, vote, id):
+    logging.info("delete_vote request user response: Please input id of the one you want to delete\n")
     v_id = input("Please input id of the one you want to delete:")
+    logging.info("Response: ")
+    logging.info(v_id)
+    logging.info("\n")
     if table == 'post':
         if vote == 'up':
             pu.delete(v_id)
@@ -119,6 +152,7 @@ def show_votes(table, id):
     print("-" * 40)
     print ("                Vote Menu")
     print("-" * 40)
+    logging.info("Print show_votes menu - Request user's response\n")
     if admin == True:
         method = input('''   
             1 = Up
@@ -136,21 +170,31 @@ def show_votes(table, id):
             6 = Exit
             ''')
     if method == '1':
+        logging.info("Response: 1 - Up\n")
         insert_vote(table, 'up', id)
     elif method == '2':
+        logging.info("Response: 2 - Down\n")
         insert_vote(table, 'down', id)
     elif method == '3':
+        logging.info("Response: 3 - Delete Up\n")
         delete_vote(table, 'up', id)
     elif method == '4':
+        logging.info("Response: 4 - Delete Down\n")
         delete_vote(table, 'down', id)
     elif method == '6':
+        logging.info("Response: 6 - Exit")
         exit()
     else:
+        logging.info("Response: 5 - Main Menu")
         main_menu()
 
 def insert_comment(p_id):
     global new_c_id
+    logging.info("insert_comment request user response - Please input your comment\n")
     content = input("Please input your comment:")
+    logging.info("Response: ")
+    logging.info(content)
+    logging.info("\n")
     comment.insert(new_c_id,content,p_id,this_u_id)
     new_c_id += 1
     show_comments(p_id)  
@@ -161,13 +205,25 @@ def show_comment(c_id):
     show_votes('comment', c_id)
 
 def delete_comment(p_id):
+    logging.info("delete_comment request user response - Please input id of the one you choose\n")
     c_id = input("Please input id of the one you choose:")
+    logging.info("Response: ")
+    logging.info(c_id)
+    logging.info("\n")
     comment.delete(c_id)
     show_comments(p_id)
 
 def update_comment(p_id):
+    logging.info("update_comment request user response - Please input the id of the one you choose\n")
     c_id = input("Please input id of the one you choose:")
+    logging.info("Response: ")
+    logging.info(c_id)
+    logging.info("\n")
+    logging.info("update_comment request user response - Please input your comment\n")
     content = input("Please input your comment:")
+    logging.info("Response: ")
+    logging.info(content)
+    logging.info("\n")
     comment.update(c_id,content)
     show_comments(p_id)
 
@@ -178,6 +234,7 @@ def show_comments(p_id):
     print("-" * 40)
     print ("                Comment Menu")
     print("-" * 40)
+    logging.info("Print show_comments menu - Request user response\n")
     if admin == True:
         method = input('''   
             1 = Create One
@@ -195,36 +252,51 @@ def show_comments(p_id):
             6 = Exit
             ''')        
     if method == '1':
+        logging.info("Response: 1 - Create One\n")
         insert_comment(p_id)
     elif method == '2':
+        logging.info("Response: 2 - Choose One\n")
         c_id = input("Please input id of the one you choose:")
         show_comment(c_id)
     elif method == '3':
+        logging.info("Response: 3 - Delete One\n")
         delete_comment(p_id)
     elif method == '4':
+        logging.info("Response: 4 - Update One\n")
         update_comment(p_id);
     elif method == '6':
+        logging.info("Response: 6 - Exit\n")
         exit()
     else:
+        logging.info("Response: 5 - Main Menu\n")
         main_menu()
 
 def insert_post(s_id):
     global new_p_id
+    logging.info("insert_post request user response - Please input your post\n")
     content = input("Please input your post:")
+    logging.info("Response: ")
+    logging.info(content)
+    logging.info("\n")
     post.insert(new_p_id,content,s_id,this_u_id)
     new_p_id += 1
     show_posts(s_id)  
 
 def show_post():
+    logging.info("show_post request user response - Please input id of the one you choose\n")
     p_id = input("Please input id of the one you choose:")
+    logging.info("Response: ")
+    logging.info(p_id)
+    logging.info("\n")
     _post= post.read_one(p_id)
     print (_post)
     comment_and_vote_menu(p_id)
     
 def comment_and_vote_menu(p_id):
     print("-" * 40)
-    print ("                Comment/Vote Menu")
+    print("                Comment/Vote Menu")
     print("-" * 40)
+    logging.info("Print comment_and_vote_menu menu - Request user response\n")
     method = input('''   
         1 = Show Comments
         2 = Show Votes
@@ -232,13 +304,17 @@ def comment_and_vote_menu(p_id):
         4 = Exit
         ''')
     if method == '1':
+        logging.info("Response: 1 - Show Comments\n")
         show_comments(p_id)
     elif method == '2':
+        logging.info("Response: 2 - Show votes\n")
         show_votes('post', p_id)
     elif method == '4':
+        logging.info("Response: 4 - Exit\n")
         exit()
     else:
-        main_menu()    
+        logging.info("Response: 3 - Main Menu\n")
+        main_menu()  
 
 def delete_post(s_id):
     p_id = input("Please input id of the one you choose:")
@@ -246,18 +322,27 @@ def delete_post(s_id):
     show_posts(s_id)
 
 def update_post(s_id):
+    logging.info("update_post request user response - Please input id of the one you choose\n")
     p_id = input("Please input id of the one you choose:")
+    logging.info("Response: ")
+    logging.info(p_id)
+    logging.info("\n")
+    logging.info("update_post request usr response - Please input your post\n")
     content = input("Please input your post:")
+    logging.info("Reponse: ")
+    logging.info(content)
+    logging.info("\n")
     post.update(p_id,content)
     show_posts(s_id)
 
 def show_posts(s_id):
     posts = post.read_all(s_id)
-    print ("Posts:")
-    print (posts)
+    print("Posts:")
+    print(posts)
     print("-" * 40)
-    print ("                Post Menu")
+    print("                Post Menu")
     print("-" * 40)
+    logging.info("Print show_posts menu - Request user response\n")
     if admin == True:
         method = input('''   
             1 = Create One
@@ -273,50 +358,77 @@ def show_posts(s_id):
             2 = Choose One
             5 = Main Menu
             6 = Exit
-            ''') 
+            ''')
     if method == '1':
+        logging.info("Response: 1 - Create One\n")
         insert_post(s_id)
     elif method == '2':
+        logging.info("Response: 2 - Choose One\n")
         show_post()
     elif method == '3':
+        logging.info("Response: 3 - Delete One\n")
         delete_post(s_id)
     elif method == '4':
+        logging.info("Response: 4 - Update One\n")
         update_post(s_id);
     elif method == '6':
+        logging.info("Response: 6 - Exit\n")
         exit()
     else:
+        logging.info("Response: 5 - Main Menu\n")
         main_menu()
 
 def insert_seenit():
     global new_s_id
+    logging.info("insert_seenit request user response - Please describe your seenit\n")
     category = input("Please describe your seenit:")
-    seenit.insert(new_s_id,category,this_u_id)
+    logging.info("Response: ")
+    logging.info(category)
+    logging.info("\n")
+    seenit.insert(new_s_id, category, this_u_id)
     new_s_id += 1
-    show_seenits()    
+    show_seenits()  
 
 def show_seenit():
+    logging.info("show_seenit request user reponse - Please input id of the one you choose\n")
     s_id = input("Please input id of the one you choose:")
+    logging.info("Response: ")
+    logging.info(s_id)
+    logging.info("\n")
     _seenit = seenit.read_one(s_id)
-    print (_seenit)
+    print(_seenit)
     show_posts(s_id)
 
 def delete_seenit():
+    logging.info("delete_seenit request user reponse - Please input id of the one you choose\n")
     s_id = input("Please input id of the one you choose:")
+    logging.info("Response: ")
+    logging.info(s_id)
+    logging.info("\n")
     seenit.delete(s_id)
     show_seenits()
 
 def update_seenit():
+    logging.info("update_seenit request user response - Please input id of the one you choose\n")
     s_id = input("Please input id of the one you choose:")
+    logging.info("Response: ")
+    logging.info(s_id)
+    logging.info("\n")
+    logging.info("update_seenit request user response - Please decribe your seenit\n")
     category = input("Please describe your seenit:")
-    seenit.update(s_id,category)
+    logging.info("Response: ")
+    logging.info(category)
+    logging.info("\n")
+    seenit.update(s_id, category)
     show_seenits()
 
-def show_seenits():  
+def show_seenits():
     seenits = seenit.read_all()
-    print (seenits)
+    print(seenits)
     print("-" * 40)
-    print ("                Seenit Menu")
+    print("                Seenit Menu")
     print("-" * 40)
+    logging.info("Print show_seenits menu - Request user reponse\n")
     if admin == True:
         method = input('''   
             1 = Create One
@@ -332,18 +444,24 @@ def show_seenits():
             2 = Choose One
             5 = Main Menu
             6 = Exit
-            ''') 
+            ''')
     if method == '1':
+        logging.info("Response: 1 - Create One\n")
         insert_seenit()
     elif method == '2':
+        logging.info("Response: 2 - Choose One\n")
         show_seenit()
     elif method == '3':
+        logging.info("Response: 3 - Delete One\n")
         delete_seenit()
     elif method == '4':
+        logging.info("Response: 4 - Update One\n")
         update_seenit();
     elif method == '6':
+        logging.info("Response: 6 - Exit\n")
         exit()
     else:
+        logging.info("Response: 5 - Main Menu\n")
         main_menu()
 
 def account_profile():
@@ -352,9 +470,10 @@ def account_profile():
     print("Account Information:")
     print(user_info)
     print("-" * 40)
-    print ("                Account Menu")
+    print("                Account Menu")
     print("-" * 40)
-    if admin == True:            
+    logging.info("Print account_profile menu - Request user response\n")
+    if admin == True:
         method = input('''   
             1 = Update My Account Info
             2 = Delete My Account
@@ -370,48 +489,66 @@ def account_profile():
             5 = Exit
             ''')
     if method == '1':
+        logging.info("Response: 1 - Update Account Info\n")
+        logging.info("Response 1 request user response\n")
         x = input("user name: ")
         z = input("password: ")
         y = input("email: ")
+        logging.info("user name: ")
+        logging.info(x)
+        logging.info(" password: ")
+        logging.info(z)
+        logging.info(" email: ")
+        logging.info(y)
+        logging.info("\n")
         user.update(this_u_id, x, z, y)
         account_profile()
     elif method == '2':
+        logging.info("Response: 2 - Delete My Account\n")
         user.delete(this_u_id)
         this_u_id = 0
         main_menu()
     elif method == '3':
+        logging.info("Response: 3 - Show All Accounts\n")
         all_users = user.read_all()
-        print (all_users)
+        print(all_users)
         account_profile()
     elif method == '5':
+        logging.info("Response: 5 - Exit\n")
         exit()
     else:
+        logging.info("Response: 4 - Main Menu\n")
         main_menu()
 
 def main_menu():
     print("-" * 40)
-    print ("                Main Menu")
+    print("                Main Menu")
     print("-" * 40)
-    print ("User ID is", this_u_id)
-    print ("0 means not logged in yet, other number means logged in already")
+    print("User ID is", this_u_id)
+    print("0 means not logged in yet, other number means logged in already")
+    logging.info("Printing main menu - Request user response\n")
     if this_u_id:
         method = input(''' 
             0 = Account Profile  
             2 = Show Seenits
             3 = Exit
             ''')
-    else:    
+    else:
         method = input('''   
             1 = Login
             3 = Exit
             ''')
     if method == '1':
+        logging.info("Response: 1 - Login\n")
         login()
     elif method == '2':
+        logging.info("Response: 2 - Show Seenits\n")
         show_seenits()
     elif method == '0':
+        logging.info("Response: 0 - Account Profile\n")
         account_profile()
     else:
+        logging.info("Response: 3 - Exit\n")
         exit()
 
 # build_database()

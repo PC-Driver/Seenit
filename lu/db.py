@@ -1,6 +1,9 @@
 # run this file to create the database and tables before running the app
 import sqlite3 as sql
-
+import logging
+logging.basicConfig(filename='seenit.log', level=logging.INFO,
+                    format='%(asctime)s:%(levelname)s:%(message)s')
+                    
 conn = sql.connect('seenit.db')
 c = conn.cursor()
 

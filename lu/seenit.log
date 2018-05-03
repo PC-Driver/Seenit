@@ -1,0 +1,174 @@
+INFO:Printing main menu - Request user response
+
+2018-05-02 21:04:11,652:INFO:Printing main menu - Request user response
+
+2018-05-02 21:27:32,816:INFO:Printing main menu - Request user response
+
+2018-05-02 21:27:36,634:INFO:Response: 1 - Login
+
+2018-05-02 21:27:36,634:INFO:Print login menu - Request user response
+
+2018-05-02 21:27:40,558:INFO:Response: 2 - Already A Member
+
+2018-05-02 21:27:40,558:INFO:Print login menu - Request user response
+
+2018-05-02 21:27:48,338:INFO:user name: 
+2018-05-02 21:27:48,338:INFO:rest
+2018-05-02 21:27:48,338:INFO: password: 
+2018-05-02 21:27:48,338:INFO:test
+2018-05-02 21:27:48,338:INFO: Are you an administrator? 
+2018-05-02 21:27:48,338:INFO:y
+2018-05-02 21:27:48,338:INFO:
+
+2018-05-02 21:27:48,338:INFO:Printing main menu - Request user response
+
+2018-05-02 21:27:50,167:INFO:Response: 1 - Login
+
+2018-05-02 21:27:50,168:INFO:Print login menu - Request user response
+
+2018-05-02 21:27:51,664:INFO:Response: 2 - Already A Member
+
+2018-05-02 21:27:51,664:INFO:Print login menu - Request user response
+
+2018-05-02 21:27:56,634:INFO:user name: 
+2018-05-02 21:27:56,635:INFO:test
+2018-05-02 21:27:56,635:INFO: password: 
+2018-05-02 21:27:56,635:INFO:test
+2018-05-02 21:27:56,635:INFO: Are you an administrator? 
+2018-05-02 21:27:56,635:INFO:y
+2018-05-02 21:27:56,635:INFO:
+
+2018-05-02 21:27:56,635:INFO:Printing main menu - Request user response
+
+2018-05-02 21:27:59,505:INFO:Response: 1 - Login
+
+2018-05-02 21:27:59,520:INFO:Print login menu - Request user response
+
+2018-05-02 21:28:02,666:INFO:Response: 4 - Exit
+
+2018-05-02 21:48:04,800:INFO:Printing main menu - Request user response
+
+2018-05-02 21:48:06,672:INFO:Response: 1 - Login
+
+2018-05-02 21:48:06,672:INFO:Print login menu - Request user response
+
+2018-05-02 21:48:08,585:INFO:Response: 2 - Already A Member
+
+2018-05-02 21:48:08,585:INFO:Print login menu - Request user response
+
+2018-05-02 21:48:17,741:INFO:login successfully
+
+2018-05-02 21:48:17,742:INFO:user name: 
+2018-05-02 21:48:17,742:INFO:test2
+2018-05-02 21:48:17,742:INFO: password: 
+2018-05-02 21:48:17,743:INFO:test2
+2018-05-02 21:48:17,743:INFO: Are you an administrator? 
+2018-05-02 21:48:17,743:INFO:y
+2018-05-02 21:48:17,743:INFO:
+
+2018-05-02 21:48:17,743:INFO:Printing main menu - Request user response
+
+2018-05-02 21:48:22,850:INFO:Response: 2 - Show Seenits
+
+2018-05-02 21:48:22,851:INFO:read all seenits successfully
+
+2018-05-02 21:48:22,851:INFO:Print show_seenits menu - Request user reponse
+
+2018-05-02 21:48:25,716:INFO:Response: 2 - Choose One
+
+2018-05-02 21:48:25,717:INFO:show_seenit request user reponse - Please input id of the one you choose
+
+2018-05-02 21:48:34,339:INFO:Response: 
+2018-05-02 21:48:34,341:INFO:3
+2018-05-02 21:48:34,341:INFO:
+
+2018-05-02 21:48:34,342:INFO:read one seenit successfully
+
+2018-05-02 21:48:34,343:INFO:read all posts successfully
+
+2018-05-02 21:48:34,343:INFO:Print show_posts menu - Request user response
+
+2018-05-02 21:48:39,397:INFO:Response: 2 - Choose One
+
+2018-05-02 21:48:39,398:INFO:show_post request user response - Please input id of the one you choose
+
+2018-05-02 21:48:43,572:INFO:Response: 
+2018-05-02 21:48:43,573:INFO:3
+2018-05-02 21:48:43,573:INFO:
+
+2018-05-02 21:48:43,573:INFO:read one post successfully
+
+2018-05-02 21:48:43,574:INFO:Print comment_and_vote_menu menu - Request user response
+
+2018-05-02 21:48:50,345:INFO:Response: 1 - Show Comments
+
+2018-05-02 21:48:50,347:INFO:read all comments successfully
+
+2018-05-02 21:48:50,347:INFO:Print show_comments menu - Request user response
+
+2018-05-02 21:49:00,301:INFO:Response: 2 - Choose One
+
+2018-05-02 21:49:04,361:INFO:read one comment successfully
+
+2018-05-02 21:49:04,362:INFO:read all comment upvotes successfully
+
+2018-05-02 21:49:04,363:INFO:read all comment downvotes successfully
+
+2018-05-02 21:49:04,363:INFO:Print show_votes menu - Request user's response
+
+2018-05-02 21:49:09,976:INFO:Response: 1 - Up
+
+2018-05-02 21:49:09,984:INFO:insert comment upvote successfully
+
+2018-05-02 21:49:09,988:INFO:read one comment successfully
+
+2018-05-02 21:49:09,988:INFO:read all comment upvotes successfully
+
+2018-05-02 21:49:09,989:INFO:read all comment downvotes successfully
+
+2018-05-02 21:49:09,989:INFO:Print show_votes menu - Request user's response
+
+2018-05-02 21:49:15,891:INFO:Response: 5 - Main Menu
+2018-05-02 21:49:15,892:INFO:Printing main menu - Request user response
+
+2018-05-02 21:49:17,703:INFO:Response: 2 - Show Seenits
+
+2018-05-02 21:49:17,703:INFO:read all seenits successfully
+
+2018-05-02 21:49:17,703:INFO:Print show_seenits menu - Request user reponse
+
+2018-05-02 21:49:19,773:INFO:Response: 2 - Choose One
+
+2018-05-02 21:49:19,773:INFO:show_seenit request user reponse - Please input id of the one you choose
+
+2018-05-02 21:49:23,756:INFO:Response: 
+2018-05-02 21:49:23,756:INFO:2
+2018-05-02 21:49:23,756:INFO:
+
+2018-05-02 21:49:23,756:INFO:read one seenit successfully
+
+2018-05-02 21:49:23,757:INFO:read all posts successfully
+
+2018-05-02 21:49:23,757:INFO:Print show_posts menu - Request user response
+
+2018-05-02 21:49:28,662:INFO:Response: 2 - Choose One
+
+2018-05-02 21:49:28,662:INFO:show_post request user response - Please input id of the one you choose
+
+2018-05-02 21:49:31,270:INFO:Response: 
+2018-05-02 21:49:31,270:INFO:4
+2018-05-02 21:49:31,270:INFO:
+
+2018-05-02 21:49:31,271:INFO:read one post successfully
+
+2018-05-02 21:49:31,271:INFO:Print comment_and_vote_menu menu - Request user response
+
+2018-05-02 21:49:33,601:INFO:Response: 2 - Show votes
+
+2018-05-02 21:49:33,603:INFO:read all post upvote successfully
+
+2018-05-02 21:49:33,604:INFO:read all post downvotes successfully
+
+2018-05-02 21:49:33,604:INFO:Print show_votes menu - Request user's response
+
+2018-05-02 21:49:39,395:INFO:Response: 6 - Exit
